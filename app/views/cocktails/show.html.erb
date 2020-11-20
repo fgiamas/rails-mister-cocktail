@@ -1,0 +1,24 @@
+
+<div class = "life">
+  <h2><%= @cocktail.name %></h2>
+<%= link_to 'Back', cocktails_path %> |
+<%= link_to 'Add dose', new_cocktail_dose_path(@cocktail) %>
+</div>
+
+
+
+<div class ="jerk">
+<ul class="list-group">
+  <% @cocktail.doses.each do |dose| %>
+<li class="list-group-item">
+      <%= dose.description %>
+      <%= link_to "Remove",
+                  dose_path(dose),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+</li>
+</ul>
+<% end %>
+
+</div>
+
