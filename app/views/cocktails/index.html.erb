@@ -1,22 +1,29 @@
 
-  <div class="containerg">
+<div class="containerg">
   <h1>Cocktails!</h1>
 </div>
+
+
 
 <div class="container mt-4">
   <div class="cards">
     <%  @cocktails.each do |cocktail| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(4,5,5,9.3), rgba(0,0,0,0.3))">
-        <%= link_to cocktail.name, cocktail_path(cocktail), class: "link-cocktail" %>
-      </div>
+    <% if cocktail.photo.attached?%>
+    <div class="card-category w-100" style="background-image:url(<%= cl_image_path cocktail.photo.key %>)">
+      <% else %>
+      <div class="card-category w-100" style="background-image:url(https://source.unsplash.com/1600x900/?<%= cocktail.name %>)">
+      <% end %>
+    <%= link_to cocktail.name, cocktail_path(cocktail), class: "link-cocktail" %>
+    </div>
     <% end %>
-  </div>
-</div>
+    </div>
+    </div>
 
 
 
-<div class="pad10 text-center">
-    <%= link_to "Add your cocktail", new_cocktail_path, class: "btn btn-dark" %>
-  </div>
+    <div class="pad10 text-center">
+      <%= link_to "Add your cocktail", new_cocktail_path, class: "btn btn-dark" %>
+    </div>
+
 
 
